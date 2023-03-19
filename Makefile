@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2023/03/19 16:31:14 by abettini         ###   ########.fr        #
+#    Updated: 2023/03/19 17:11:44 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,13 @@ CMP = $(GREEN)successfully compiled$(NOCOL)
 
 CC = cc
 
+NAME = philo
+
 SRC = philosophers.c
+
+LIBFT = Libft/libft.a
+
+FLAGS = -Wall -Werror -Wextra -g
 
 all: $(NAME)
 
@@ -50,6 +56,8 @@ fclean:   	libfclean
 			rm -rf $(NAME);\
 			echo "$(TCOL)$(NAME) $(RMD)";\
 		fi
+
+re: fclean all
 
 .PHONY: all re clean fclean
 
