@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2023/03/19 17:11:44 by abettini         ###   ########.fr        #
+#    Updated: 2023/03/21 13:32:39 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CC = cc
 
 NAME = philo
 
-SRC = philosophers.c
+SRC = src/philosophers.c
 
 LIBFT = Libft/libft.a
 
