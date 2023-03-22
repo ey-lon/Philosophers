@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2023/03/21 13:32:39 by abettini         ###   ########.fr        #
+#    Updated: 2023/03/22 16:51:22 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,30 +28,21 @@ NAME = philo
 
 SRC = src/philosophers.c
 
-LIBFT = Libft/libft.a
-
 FLAGS = -Wall -Werror -Wextra -g
+
+TFLAG = -lpthread
 
 all: $(NAME)
 
 $(NAME): comp
 
-libcomp:
-		@make -C Libft
-
-comp: libcomp
-	$(CC) $(FLAGS) $(SRC) $(LIBFT) -o $(NAME)
+comp:
+	$(CC) $(FLAGS) $(SRC) $(TFLAG) -o $(NAME)
 	echo "$(TCOL)$(NAME) $(CMP)"
 
-libclean:
-		@make clean -C Libft
+clean:
 
-clean:		libclean
-
-libfclean:
-		@make fclean -C Libft
-
-fclean:   	libfclean
+fclean: clean
 		if [ -f $(NAME) ]; then\
 			rm -rf $(NAME);\
 			echo "$(TCOL)$(NAME) $(RMD)";\
