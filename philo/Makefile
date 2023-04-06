@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2023/03/22 16:51:22 by abettini         ###   ########.fr        #
+#    Updated: 2023/04/06 10:34:09 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,32 +24,38 @@ CMP = $(GREEN)successfully compiled$(NOCOL)
 
 CC = cc
 
+RM = rm -rf
+
 NAME = philo
 
-SRC = src/philosophers.c
+SRC = main.c \
+	philo_utils.c \
+	err_check.c
 
-FLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g
 
 TFLAG = -lpthread
+
+#----------------------------------------------
 
 all: $(NAME)
 
 $(NAME): comp
 
 comp:
-	$(CC) $(FLAGS) $(SRC) $(TFLAG) -o $(NAME)
+	$(CC) $(SRC) $(TFLAG) -o $(NAME)
 	echo "$(TCOL)$(NAME) $(CMP)"
 
 clean:
 
 fclean: clean
 		if [ -f $(NAME) ]; then\
-			rm -rf $(NAME);\
+			$(RM) $(NAME);\
 			echo "$(TCOL)$(NAME) $(RMD)";\
 		fi
 
 re: fclean all
 
-.PHONY: all re clean fclean
+.PHONY: $(NAME) all re clean fclean
 
 .SILENT:
