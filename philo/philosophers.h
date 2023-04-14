@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:56:28 by abettini          #+#    #+#             */
-/*   Updated: 2023/04/06 12:10:03 by abettini         ###   ########.fr       */
+/*   Updated: 2023/04/07 09:52:47 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_vars
 	long int	time_to_sleep;
 	int number_of_times_each_philo_must_eat;
 	struct timeval	start_time;
-	//pthread_mutex_t	deaths;
+	int	deaths;
 }	t_vars;
 
 typedef struct s_philo
