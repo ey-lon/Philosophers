@@ -6,13 +6,14 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:15:13 by abettini          #+#    #+#             */
-/*   Updated: 2023/04/14 11:03:03 by abettini         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:39:58 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 
+/*
 void    ft_philos_join(t_philo *philos, int n_of_philos)
 {
     int i;
@@ -25,8 +26,6 @@ void    ft_philos_join(t_philo *philos, int n_of_philos)
     }
 }
 
-
-/*
 void    ft_philos_detach(t_philo *philos, int n_of_philos)
 {
     int i;
@@ -54,7 +53,6 @@ void    ft_forks_unlock(t_philo *philos, int n_of_philos)
             i = 0;
     }
 }
-*/
 
 void    ft_philos_end(t_philo *philos, int n_of_philos)
 {
@@ -68,6 +66,9 @@ void    ft_philos_end(t_philo *philos, int n_of_philos)
     }
     free(philos);
 }
+*/
+
+//---------------------------------------------------------------------------------------------------------------
 
 long int ft_time_elapsed(struct timeval time)
 {
@@ -77,6 +78,13 @@ long int ft_time_elapsed(struct timeval time)
     gettimeofday(&time_of_action, NULL);
     x = time_of_action.tv_usec - time.tv_usec;
     return (x);
+}
+
+void    ft_mutex_printf(char *str, t_philo *philo)
+{   
+    pthread_mutex_lock(&philo->info->print);
+    printf("%ld %d %s\n", ft_time_elapsed(philo->info->start_time), philo->id, str);
+    pthread_mutex_unlock(&philo->info->print);
 }
 
 //---------------------------------------------------------------------------------------------------------------
@@ -91,27 +99,22 @@ void *ft_philo(void *arg)
         !philo->info->deaths)
     {
         //philosopher is thinking -------------------------------------------------------------------------------
-        if (!philo->info->deaths)
-            printf("%ld %d is thinking\n", ft_time_elapsed(philo->info->start_time), philo->id);
+        ft_mutex_printf("is thinking", philo);
         usleep(0);
         //philosopher is eating ---------------------------------------------------------------------------------
         pthread_mutex_lock(&philo->fork_l);
-        if (!philo->info->deaths)
-            printf("%ld %d has taken a fork\n", ft_time_elapsed(philo->info->start_time), philo->id);
+        ft_mutex_printf("has taken a fork", philo);
         pthread_mutex_lock(philo->fork_r);
-        if (!philo->info->deaths)
-            printf("%ld %d has taken a fork\n%ld %d is eating\n", \
-                ft_time_elapsed(philo->info->start_time), philo->id, \
-                ft_time_elapsed(philo->info->start_time), philo->id);
+        ft_mutex_printf("has taken a fork", philo);
+        ft_mutex_printf("is eating", philo);
         gettimeofday(&philo->last_time_philo_has_eaten, NULL);
-        usleep(philo->info->time_to_eat);
+        usleep(philo->info->time_to_eat * 1000);
         philo->number_of_times_philo_has_eaten++;
         pthread_mutex_unlock(&philo->fork_l);
         pthread_mutex_unlock(philo->fork_r);
         //philosopher is sleeping -------------------------------------------------------------------------------
-        if (!philo->info->deaths)
-            printf("%ld %d is sleeping\n", ft_time_elapsed(philo->info->start_time), philo->id);
-        usleep(philo->info->time_to_sleep);
+        ft_mutex_printf("is sleeping", philo);
+        usleep(philo->info->time_to_sleep * 1000);
     }
     return (NULL);
 }
@@ -131,7 +134,8 @@ void    *ft_philos_death(void *arg)
         gettimeofday(&time, NULL);
         if (time.tv_usec - philos[i].last_time_philo_has_eaten.tv_usec >= philos->info->time_to_die)
         {
-            printf("%ld %d died\n", time.tv_usec - philos->info->start_time.tv_usec, philos[i].id);
+            pthread_mutex_lock(&philos->info->print);
+            printf("%ld %d %s\n", ft_time_elapsed(philos->info->start_time), philos[i].id, "died");
             philos->info->deaths++;
             return (NULL);
         }
@@ -189,20 +193,19 @@ int main(int ac, char **av)
     t_philo *philos;
     pthread_t death;
 
-    if (ac < 5 || ac > 7)
+    if (ac < 5 || ac > 6)
         return (1);
     if (ft_error_check(av + 1))
         return (printf("Error!\n") * 0 + 2);
     info = ft_get_stats(ac - 1, av + 1);
     philos = malloc(sizeof(t_philo) * info.n_of_philos);
+    pthread_mutex_init(&info.print, NULL);
     gettimeofday(&info.start_time, NULL);
     ft_philos_init(philos, info.n_of_philos, &info);
     pthread_create(&death, NULL, ft_philos_death, philos);
     while (!info.deaths)
         usleep(0);
-    pthread_join(death, NULL);
-    //ft_philos_join(philos, info.n_of_philos);
-    ft_philos_end(philos, info.n_of_philos);
+    //handle end.
     return (0);
 }
 
