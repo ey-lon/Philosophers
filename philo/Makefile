@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2023/04/28 15:12:12 by abettini         ###   ########.fr        #
+#    Updated: 2023/04/28 15:49:05 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ RM = rm -rf
 NAME = philo
 
 SRC = main.c \
+	philo_main.c \
 	philo_life.c \
 	philo_death.c \
 	philo_other.c \
