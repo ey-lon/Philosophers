@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:56:28 by abettini          #+#    #+#             */
-/*   Updated: 2023/04/28 12:15:34 by abettini         ###   ########.fr       */
+/*   Updated: 2023/04/28 15:12:19 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_vars
 	struct timeval	start_time;
 	int			deaths;
 	pthread_mutex_t print;
+	pthread_mutex_t meal;
 }	t_vars;
 
 typedef struct s_philo
@@ -41,13 +42,22 @@ typedef struct s_philo
 	pthread_mutex_t *fork_r;
 	int				meals_left;
 	struct timeval	last_meal;
+	int				full;
 	t_vars			*info;
 } t_philo;
 
+//philo_life ----------------------------
+void	*ft_philo(void *arg);
+void    *ft_one_philo(void *arg);
+//philo_death ---------------------------
+void    *ft_philos_death(void *arg);
+//philo_other ---------------------------
+long int ft_time_elapsed(struct timeval time);
+void    ft_mutex_printf(char *str, t_philo *philo);
 //err_check -----------------------------
-int	ft_error_check(char **mat);
+int		ft_error_check(char **mat);
 //utils ---------------------------------
-int	ft_atoi(const char *str);
-int	ft_isdigit(char c);
+int		ft_atoi(const char *str);
+int		ft_isdigit(char c);
 
 #endif
