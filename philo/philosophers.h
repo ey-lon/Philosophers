@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:56:28 by abettini          #+#    #+#             */
-/*   Updated: 2023/04/24 10:14:35 by abettini         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:15:34 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,25 @@
 
 typedef struct s_vars
 {
-	int	n_of_philos;
+	int			n_of_philos;
 	long int	time_to_die;
 	long int	time_to_eat;
 	long int	time_to_sleep;
-	int number_of_times_each_philo_must_eat;
+	int			n_meals;
 	struct timeval	start_time;
-	int	deaths;
-	pthread_mutex_t clock;
+	int			deaths;
 	pthread_mutex_t print;
 }	t_vars;
 
 typedef struct s_philo
 {
-	int id;
-	pthread_t	philo;
+	int				id;
+	pthread_t		philo;
 	pthread_mutex_t fork_l;
 	pthread_mutex_t *fork_r;
-	int	number_of_times_philo_has_eaten;
-	struct timeval	last_time_philo_has_eaten;
-	t_vars *info;
+	int				meals_left;
+	struct timeval	last_meal;
+	t_vars			*info;
 } t_philo;
 
 //err_check -----------------------------

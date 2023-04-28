@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:19:31 by abettini          #+#    #+#             */
-/*   Updated: 2023/04/06 10:05:14 by abettini         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:27:54 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,19 @@ int	ft_int_type_check(char *str)
 	int	check;
 
 	check = 0;
-	if (((str[0] == '-' || str[0] == '+')
-			&& str[1] != '\0') || ft_isdigit(str[0]))
-	{
-		i = 1;
-		while (str[i] && check == 0)
-		{
-			if (!ft_isdigit(str[i]))
-				check = 1;
-			i++;
-		}
-	}
-	else
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
 		check = 1;
+	while (str[i] && check == 0)
+	{
+		if (!ft_isdigit(str[i]))
+			check = 1;
+		i++;
+	}
 	return (check);
 }
 
