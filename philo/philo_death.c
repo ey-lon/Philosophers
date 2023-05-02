@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:53:55 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 13:33:10 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:12:57 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //-----------------------------------------------------------------------------
 
-int	ft_calc_death(t_philo *philo)
+static int	ft_calc_death(t_philo *philo)
 {
 	struct timeval	time;
 	int				check;
@@ -29,7 +29,7 @@ int	ft_calc_death(t_philo *philo)
 	return (check);
 }
 
-int	ft_check_full(t_philo *philos)
+static int	ft_check_full(t_philo *philos)
 {
 	int			check;
 	static int	count;

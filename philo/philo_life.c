@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:55:17 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 14:03:27 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:13:56 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //-----------------------------------------------------------------------------
 
-int	ft_philo_full(t_philo *philo)
+static int	ft_philo_full(t_philo *philo)
 {
 	if (!philo->meals_left)
 	{
@@ -26,7 +26,7 @@ int	ft_philo_full(t_philo *philo)
 	return (0);
 }
 
-int	ft_check_death(t_philo *philo)
+static int	ft_check_death(t_philo *philo)
 {
 	int	check;
 
@@ -38,7 +38,9 @@ int	ft_check_death(t_philo *philo)
 	return (check);
 }
 
-void	ft_lock_m(pthread_mutex_t *m1, pthread_mutex_t *m2)
+//-----------------------------------------------------------------------------
+
+static void	ft_lock_m(pthread_mutex_t *m1, pthread_mutex_t *m2)
 {
 	if (m1 > m2)
 	{
@@ -80,6 +82,8 @@ void	*ft_philo(void *arg)
 	}
 	return (NULL);
 }
+
+//-----------------------------------------------------------------------------
 
 void	*ft_one_philo(void *arg)
 {

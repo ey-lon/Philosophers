@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:33:46 by abettini          #+#    #+#             */
-/*   Updated: 2023/04/06 10:05:43 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:12:25 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,3 @@ int	ft_isdigit(char c)
 		return (1);
 	return (0);
 }
-
-/*
-int ft_matlen(char **mat)
-{
-	int	y;
-
-	y = 0;
-	if (mat)
-	{
-		while (mat[y])
-			y++;
-	}
-	return (y);
-}
-*/

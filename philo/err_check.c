@@ -6,13 +6,13 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:19:31 by abettini          #+#    #+#             */
-/*   Updated: 2023/04/28 12:27:54 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:12:12 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_int_limit_check(char *str)
+static int	ft_int_limit_check(char *str)
 {
 	long long	res;
 	int			sign;
@@ -40,7 +40,7 @@ int	ft_int_limit_check(char *str)
 	return (0);
 }
 
-int	ft_int_type_check(char *str)
+static int	ft_int_type_check(char *str)
 {
 	int	i;
 	int	check;
@@ -62,7 +62,7 @@ int	ft_int_type_check(char *str)
 	return (check);
 }
 
-int	ft_negative_check(char *str)
+static int	ft_negative_check(char *str)
 {
 	if (ft_atoi(str) < 0)
 		return (1);

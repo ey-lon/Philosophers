@@ -6,44 +6,15 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:15:13 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 13:50:46 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:14:50 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-/*
-void    ft_philos_detach(t_philo *philos, int n_of_philos)
-{
-    int i;
-
-    i = 0;
-    while (i < n_of_philos)
-    {
-        pthread_detach(philos[i].philo);
-        i++;
-    }
-}
-*/
-/*
-void    ft_forks_unlock(t_philo *philos, int n_of_philos)
-{
-    int i;
-
-    i = 0;
-    while (1)
-    {
-        pthread_mutex_unlock(&philos[i].fork_l);
-        i++;
-        if (i == n_of_philos)
-            i = 0;
-    }
-}
-*/
-
 //-----------------------------------------------------------------------------
 
-t_vars	ft_get_info(int ac, char **av)
+static t_vars	ft_get_info(int ac, char **av)
 {
 	t_vars	info;
 
@@ -73,5 +44,3 @@ int	main(int ac, char **av)
 	ft_philo_main(philos, &info);
 	return (0);
 }
-
-//pthread_join needed for the leaks!!
