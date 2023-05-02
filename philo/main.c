@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:15:13 by abettini          #+#    #+#             */
-/*   Updated: 2023/04/28 15:53:32 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/02 13:50:46 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	main(int ac, char **av)
 	info = ft_get_info(ac - 1, av + 1);
 	philos = malloc(sizeof(t_philo) * info.n_of_philos);
 	ft_philo_main(philos, &info);
-	//handle end.
 	return (0);
 }
 
