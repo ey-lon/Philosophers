@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:55:17 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 14:13:56 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:19:19 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_philo_full(t_philo *philo)
 	return (0);
 }
 
-static int	ft_check_death(t_philo *philo)
+static int	ft_check_deaths(t_philo *philo)
 {
 	int	check;
 
@@ -60,7 +60,7 @@ void	*ft_philo(void *arg)
 
 	philo = (t_philo *)arg;
 	while ((philo->info->n_meals == -1 || philo->meals_left) \
-			&& !ft_check_death(philo))
+			&& !ft_check_deaths(philo))
 	{
 		ft_mutex_printf("has taken a fork", philo);
 		ft_lock_m(&philo->fork_l, philo->fork_r);
@@ -95,7 +95,7 @@ void	*ft_one_philo(void *arg)
 	ft_mutex_printf("has taken a fork", philo);
 	while (1)
 	{
-		if (ft_check_death(philo))
+		if (ft_check_deaths(philo))
 			break ;
 	}
 	return (NULL);

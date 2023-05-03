@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:43:52 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 14:14:44 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:34:58 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	ft_philos_end(t_philo *philos, int n_of_philos)
 {
 	int	i;
 
+	pthread_mutex_destroy(&philos->info->print);
+	pthread_mutex_destroy(&philos->info->meal);
 	i = 0;
 	while (i < n_of_philos)
 	{

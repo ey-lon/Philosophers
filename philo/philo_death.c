@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:53:55 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 14:12:57 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/02 14:24:08 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //-----------------------------------------------------------------------------
 
-static int	ft_calc_death(t_philo *philo)
+static int	ft_check_starve(t_philo *philo)
 {
 	struct timeval	time;
 	int				check;
@@ -44,6 +44,8 @@ static int	ft_check_full(t_philo *philos)
 	return (check);
 }
 
+//-----------------------------------------------------------------------------
+
 void	*ft_philos_death(void *arg)
 {
 	t_philo	*philos;
@@ -53,7 +55,7 @@ void	*ft_philos_death(void *arg)
 	i = 0;
 	while (!ft_check_full(philos))
 	{
-		if (ft_calc_death(&philos[i]))
+		if (ft_check_starve(&philos[i]))
 		{
 			pthread_mutex_lock(&philos->info->print);
 			printf("%ld %d %s\n", ft_time_elapsed(philos->info->start_time), \
