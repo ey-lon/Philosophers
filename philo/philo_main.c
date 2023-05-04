@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:43:52 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 14:34:58 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:32:22 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ static void	ft_philos_init(t_philo *philos, int n_of_philos, t_vars *info)
 	while (i < n_of_philos)
 	{
 		philos[i].id = i + 1;
-		philos[i].full = 0;
+		if (!info->n_meals)
+			philos[i].full = 1;
+		else
+			philos[i].full = 0;
 		philos[i].meals_left = info->n_meals;
-		philos[i].last_meal = info->start_time;
 		pthread_mutex_init(&philos[i].fork_l, NULL);
 		if (i + 1 < n_of_philos)
 			philos[i].fork_r = &philos[i + 1].fork_l;
@@ -69,15 +71,11 @@ static void	ft_philos_start(t_philo *philos, int n_of_philos)
 	i = 0;
 	while (i < n_of_philos)
 	{
+		if (i % 2 == 1)
+			usleep (100);
+		gettimeofday(&philos[i].last_meal, NULL);
 		pthread_create(&philos[i].philo, NULL, ft_philo, &philos[i]);
-		i += 2;
-	}
-	usleep(1000);
-	i = 1;
-	while (i < n_of_philos)
-	{
-		pthread_create(&philos[i].philo, NULL, ft_philo, &philos[i]);
-		i += 2;
+		i += 1;
 	}
 }
 
@@ -93,6 +91,7 @@ void	ft_philo_main(t_philo *philos, t_vars *info)
 		ft_philos_start(philos, info->n_of_philos);
 	else
 		pthread_create(&philos->philo, NULL, ft_one_philo, philos);
+	usleep(1000);
 	pthread_create(&death, NULL, ft_philos_death, philos);
 	ft_philos_join(philos, info->n_of_philos);
 	pthread_join(death, NULL);

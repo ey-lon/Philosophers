@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:53:55 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 14:24:08 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:52:59 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,12 @@ static int	ft_check_full(t_philo *philos)
 	while (philos[count].full)
 		count++;
 	if (count == philos->info->n_of_philos)
+	{
 		check = 1;
+		pthread_mutex_lock(&philos->info->print);
+		printf("All philos ate %d times\n", philos->info->n_meals);
+		pthread_mutex_unlock(&philos->info->print);
+	}
 	pthread_mutex_unlock(&philos->info->meal);
 	return (check);
 }

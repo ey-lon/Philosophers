@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2023/05/03 10:03:35 by abettini         ###   ########.fr        #
+#    Updated: 2023/05/04 15:39:42 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,19 +43,25 @@ SRC = main.c \
 	philo_utils.c \
 	err_check.c
 
+OBJ = $(SRC:.c=.o)
+
 #----------------------------------------------
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJ)
 		if [ -f $(NAME) ]; then\
 			echo "$(TCOL)$(NAME) $(ALC)";\
 		else\
-			$(CC) $(SRC) $(TFLAG) -o $(NAME);\
+			$(CC) $(OBJ) $(TFLAG) -o $(NAME);\
 			echo "$(TCOL)$(NAME) $(CMP)";\
 		fi
 
 clean:
+		
+			$(RM) $(OBJ)
+			echo "$(TCOL)object files $(RMD)"
+		
 
 fclean: clean
 		if [ -f $(NAME) ]; then\
