@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 14:55:17 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/05 11:52:57 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:59:19 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	*ft_one_philo(void *arg)
 	if (!philo->meals_left)
 		return (NULL);
 	ft_mutex_printf("has taken a fork", philo);
-	while (!ft_check_deaths(philo))
-		;
+	usleep(philo->info->time_to_die * 1000);
+	ft_mutex_printf("died", philo);
 	return (NULL);
 }
