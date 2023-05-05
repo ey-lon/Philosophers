@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:43:52 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/04 15:32:22 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:16:12 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,11 @@ void	ft_philo_main(t_philo *philos, t_vars *info)
 	else
 		pthread_create(&philos->philo, NULL, ft_one_philo, philos);
 	usleep(1000);
-	pthread_create(&death, NULL, ft_philos_death, philos);
+	if (info->n_meals)
+	{
+		pthread_create(&death, NULL, ft_philos_death, philos);
+		pthread_join(death, NULL);
+	}
 	ft_philos_join(philos, info->n_of_philos);
-	pthread_join(death, NULL);
 	ft_philos_end(philos, info->n_of_philos);
 }

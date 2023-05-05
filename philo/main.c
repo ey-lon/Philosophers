@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:15:13 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 14:14:50 by abettini         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:41:56 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 	t_philo		*philos;
 
 	if (ac < 5 || ac > 6)
-		return (1);
+		return (printf("Error!\nInvalid number of arguments\n") * 0 + 1);
 	if (ft_error_check(av + 1))
 		return (printf("Error!\n") * 0 + 2);
 	info = ft_get_info(ac - 1, av + 1);
