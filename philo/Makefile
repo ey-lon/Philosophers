@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2023/05/04 15:39:42 by abettini         ###   ########.fr        #
+#    Updated: 2023/05/06 10:15:52 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(NAME): $(OBJ)
 		if [ -f $(NAME) ]; then\
 			echo "$(TCOL)$(NAME) $(ALC)";\
 		else\
-			$(CC) $(OBJ) $(TFLAG) -o $(NAME);\
+			$(CC) $(CFLAG) $(OBJ) $(TFLAG) -o $(NAME);\
 			echo "$(TCOL)$(NAME) $(CMP)";\
 		fi
 
