@@ -72,6 +72,7 @@ void	*ft_philos_death(void *arg)
 		i++;
 		if (i == philos->info->n_of_philos)
 			i = 0;
+		usleep(0);
 	}
 	return (NULL);
 }
