@@ -71,6 +71,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: $(NAME) all re clean fclean
+.PHONY: all re clean fclean
 
 .SILENT:
