@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2023/05/06 10:15:52 by abettini         ###   ########.fr        #
+#    Updated: 2024/01/24 15:49:43 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,17 +50,12 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		if [ -f $(NAME) ]; then\
-			echo "$(TCOL)$(NAME) $(ALC)";\
-		else\
-			$(CC) $(CFLAG) $(OBJ) $(TFLAG) -o $(NAME);\
-			echo "$(TCOL)$(NAME) $(CMP)";\
-		fi
+		$(CC) $(CFLAG) $(OBJ) $(TFLAG) -o $(NAME)
+		echo "$(TCOL)$(NAME) $(CMP)"
 
 clean:
-		
-			$(RM) $(OBJ)
-			echo "$(TCOL)object files $(RMD)"
+	$(RM) $(OBJ)
+	echo "$(TCOL)object files $(RMD)"
 		
 
 fclean: clean

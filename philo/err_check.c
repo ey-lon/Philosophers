@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:19:31 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/24 15:33:04 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:50:10 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static bool	ft_int_type_check(char *str)
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	if (!str[i])
-		return  (1);
+		return (1);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
