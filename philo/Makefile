@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2024/01/24 15:49:43 by abettini         ###   ########.fr        #
+#    Updated: 2024/01/24 15:51:26 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ YELL = \e[0;33m
 TCOL = $(CYAN)
 RMD = $(GREEN)successfully $(RED)removed$(NOCOL)
 CMP = $(GREEN)successfully compiled$(NOCOL)
-ALC = $(YELL)already compiled$(NOCOL)
 
 #----------------------------------------------
 
@@ -54,10 +53,9 @@ $(NAME): $(OBJ)
 		echo "$(TCOL)$(NAME) $(CMP)"
 
 clean:
-	$(RM) $(OBJ)
-	echo "$(TCOL)object files $(RMD)"
+		$(RM) $(OBJ)
+		echo "$(TCOL)object files $(RMD)"
 		
-
 fclean: clean
 		if [ -f $(NAME) ]; then\
 			$(RM) $(NAME);\
