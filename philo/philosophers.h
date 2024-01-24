@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:56:28 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 13:53:02 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:42:02 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct s_vars
 {
@@ -29,7 +30,7 @@ typedef struct s_vars
 	long int		time_to_sleep;
 	int				n_meals;
 	struct timeval	start_time;
-	int				deaths;
+	bool			deaths;
 	pthread_mutex_t	print;
 	pthread_mutex_t	meal;
 }	t_vars;
@@ -42,7 +43,7 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_r;
 	int				meals_left;
 	struct timeval	last_meal;
-	int				full;
+	bool			full;
 	t_vars			*info;
 }	t_philo;
 
@@ -56,9 +57,9 @@ void		*ft_philos_death(void *arg);
 long int	ft_time_elapsed(struct timeval time);
 void		ft_mutex_printf(char *str, t_philo *philo);
 //err_check -----------------------------
-int			ft_error_check(char **mat);
+bool		ft_error_check(char **mat);
 //utils ---------------------------------
 int			ft_atoi(const char *str);
-int			ft_isdigit(char c);
+bool		ft_isdigit(char c);
 
 #endif

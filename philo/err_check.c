@@ -6,20 +6,18 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:19:31 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 14:12:12 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:33:04 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int	ft_int_limit_check(char *str)
+static bool	ft_int_limit_check(char *str)
 {
 	long long	res;
 	int			sign;
-	int			i;
-	int			dig_n;	
+	int			i;	
 
-	dig_n = 0;
 	res = 0;
 	sign = 1;
 	i = 0;
@@ -29,63 +27,57 @@ static int	ft_int_limit_check(char *str)
 		sign = -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	while (str[i] >= '0' && str[i] <= '9' && dig_n <= 11)
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + str[i] - '0';
 		i++;
-		dig_n++;
 	}
-	if (dig_n > 10 || res * sign > INT_MAX || res * sign < INT_MIN)
-		return (1);
-	return (0);
+	return (res * sign > INT_MAX || res * sign < INT_MIN);
 }
 
-static int	ft_int_type_check(char *str)
+static bool	ft_int_type_check(char *str)
 {
 	int	i;
-	int	check;
 
-	check = 0;
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	if (!str[i])
-		check = 1;
-	while (str[i] && check == 0)
+		return  (1);
+	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			check = 1;
+			return (1);
 		i++;
 	}
-	return (check);
-}
-
-static int	ft_negative_check(char *str)
-{
-	if (ft_atoi(str) < 0)
-		return (1);
 	return (0);
 }
 
-int	ft_error_check(char **mat)
+static bool	ft_negative_check(char *str)
 {
-	int	check;
+	return (ft_atoi(str) < 0);
+}
+
+bool	ft_error_check(char **mat)
+{
 	int	y;
 
-	check = 0;
 	if (mat && mat[0])
 	{
 		y = 0;
-		while (mat[y] && !check)
+		while (mat[y])
 		{
-			check += ft_int_type_check(mat[y]);
-			check += ft_int_limit_check(mat[y]);
-			check += ft_negative_check(mat[y]);
+			if (ft_int_type_check(mat[y]))
+				return (1);
+			if (ft_int_limit_check(mat[y]))
+				return (1);
+			if (ft_negative_check(mat[y]))
+				return (1);
 			y++;
 		}
-		return (check);
+		return (0);
 	}
 	return (1);
 }

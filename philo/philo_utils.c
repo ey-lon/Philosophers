@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:33:46 by abettini          #+#    #+#             */
-/*   Updated: 2023/05/02 14:12:25 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:41:52 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
-int	ft_isdigit(char c)
+bool	ft_isdigit(char c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	return (c >= '0' && c <= '9');
 }
