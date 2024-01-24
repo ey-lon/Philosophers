@@ -6,7 +6,7 @@
 #    By: abettini <abettini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 16:16:09 by abettini          #+#    #+#              #
-#    Updated: 2024/01/24 15:51:26 by abettini         ###   ########.fr        #
+#    Updated: 2024/01/24 16:01:07 by abettini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,8 @@ $(NAME): $(OBJ)
 		echo "$(TCOL)$(NAME) $(CMP)"
 
 clean:
-		$(RM) $(OBJ)
-		echo "$(TCOL)object files $(RMD)"
+		$(RM) $(OBJ);\
+		echo "$(TCOL)object files $(RMD)";\
 		
 fclean: clean
 		if [ -f $(NAME) ]; then\
